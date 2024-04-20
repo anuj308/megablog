@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
-  const authStatus = useSelector((state)=>{state.auth.status})
+  const authStatus = useSelector((state)=> state.auth.status)
+  console.log(authStatus)
   const navigate = useNavigate()
 
   const navItems = [
@@ -24,7 +25,7 @@ export default function Header() {
       slug: "/signup",
       active: !authStatus,
   },
-  {
+  { 
       name: "All Posts",
       slug: "/all-posts",
       active: authStatus,

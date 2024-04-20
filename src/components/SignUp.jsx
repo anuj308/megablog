@@ -19,7 +19,7 @@ export default function SignUp() {
 
       if (userData) {
         const userData = await authService.getCurrentUser();
-        if (userData) dispatch(login(userData));
+        if (userData) dispatch(authLogin(userData));
         naviagte("/");
       }
     } catch (error) {

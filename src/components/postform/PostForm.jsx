@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "../index";
 import appwriteService from "../../appwrite/config";
@@ -18,8 +18,11 @@ function PostForm({ post }) {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  console.log("after this")
+  console.log(userData)
 
   const submit = async (data) => {
+    console.log(data)
     if (post) {
       const file = data.image[0]
         ? appwriteService.uploadFile(data.image[0])
@@ -55,12 +58,13 @@ function PostForm({ post }) {
     return <div>PostForm</div>;
   };
 
+
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string")
       return value
         .trim()
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-")
+        .replace(/[^a-zA-Z\d\s]+/g, "-")
         .replace(/\s/g, "-");
 
     return "";
